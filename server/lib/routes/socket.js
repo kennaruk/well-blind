@@ -1,4 +1,5 @@
 var cv = require("opencv");
+var throttle = require("lodash.throttle");
 
 // camera properties
 var camWidth = 320;
@@ -22,10 +23,11 @@ module.exports = function(socket) {
 
 			im.detectObject(
 				"./node_modules/opencv/data/haarcascade_frontalface_alt2.xml",
+				// "./cetirizine.xml",
+				// "tylenol-test-1.xml",
 				{},
 				function(err, faces) {
 					if (err) throw err;
-					console.log("faces %o", faces);
 					for (var i = 0; i < faces.length; i++) {
 						face = faces[i];
 						im.rectangle(
@@ -37,6 +39,8 @@ module.exports = function(socket) {
 					}
 
 					socket.emit("frame", { buffer: im.toBuffer() });
+					socket.emit("cetirizine", {});
+					socket.emit("paracetamol", {});
 				}
 			);
 		});
