@@ -3,19 +3,20 @@
 
 <head>
   <meta name="viewport" content="initial-scale=1" />
-  <title>face-detection-node-opencv</title>
+  <title>VOICE FOR BLIND</title>
   <link rel="stylesheet" type="text/css" href="/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Arvo:700" rel="stylesheet">
 </head>
 
 <body>
+  <div id="header">
+    <p>VOICE FOR BLIND</p>
+  </div>
   <div class="container center">
-    <div id="header">
-      <p>Blind Well Ap ssp</p>
-    </div>
     <canvas id="canvas-video" width="414" height="736"></canvas>
     <audio id="cet-audio" src="/cetirizine.wav" type="audio/wav"></audio>
     <audio id="tyl-audio" src="/tylenol.wav" type="audio/wav"></audio>
-
+    <audio id="2drugs-audio" src="/two-drugs-detected.wav" type="audio/wav"></audio>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>

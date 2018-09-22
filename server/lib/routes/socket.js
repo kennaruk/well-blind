@@ -18,31 +18,64 @@ camera.setHeight(camHeight);
 
 module.exports = function(socket) {
 	setInterval(function() {
-		camera.read(function(err, im) {
+		this.isScanPara = false;
+		this.isScanCeti = false;
+
+		this.foundPara = false;
+		this.foundCeti = false;
+
+		var emitBack = im => {
+			socket.emit("frame", { buffer: im.toBuffer() });
+			if (this.isScanPara && this.isScanCeti) {
+				if (this.foundPara && this.foundCeti) socket.emit("twodrugs", {});
+				else if (this.foundPara) socket.emit("paracetamol", {});
+				else if (this.foundCeti) socket.emit("cetirizine", {});
+			}
+		};
+
+		camera.read((err, im) => {
 			if (err) throw err;
 			im.detectObject(
-				// "./node_modules/opencv/data/haarcascade_frontalface_alt2.xml",
-				// "./cetirizine.xml",
-				// "tylenol-test-1.xml",
-				"./tylenolnew3.xml",
+				"./node_modules/opencv/data/haarcascade_frontalface_alt2.xml",
 				{},
-				function(err, faces) {
+				(err, paras) => {
+					this.isScanPara = true;
 					if (err) throw err;
-					for (var i = 0; i < faces.length; i++) {
-						face = faces[i];
+					for (var i = 0; i < paras.length; i++) {
+						para = paras[i];
 						im.rectangle(
-							[face.x, face.y],
-							[face.width, face.height],
+							[para.x, para.y],
+							[para.width, para.height],
 							rectColor,
 							rectThickness
 						);
 					}
-					socket.emit("frame", { buffer: im.toBuffer() });
-					socket.emit("cetirizine", {});
-					socket.emit("paracetamol", {});
-					console.log("length ", faces.length);
+					if (paras.length > 0) this.foundPara = true;
+					emitBack(im);
 				}
 			);
+			//
+
+			im.detectObject(
+				"./node_modules/opencv/data/haarcascade_frontalface_alt2.xml",
+				{},
+				(err, cetirizines) => {
+					this.isScanCeti = true;
+					if (err) throw err;
+					for (var i = 0; i < cetirizines.length; i++) {
+						cetirizine = cetirizines[i];
+						im.rectangle(
+							[cetirizine.x, cetirizine.y],
+							[cetirizine.width, cetirizine.height],
+							[0, 102, 255],
+							rectThickness
+						);
+					}
+					if (cetirizines.length > 0) this.foundCeti = true;
+					emitBack(im);
+				}
+			);
+			//
 		});
 	}, camInterval);
 };

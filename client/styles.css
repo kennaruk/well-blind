@@ -1,4 +1,21 @@
+html {
+	padding: 0;
+}
+
+body {
+	font-family: "Arvo", serif;
+	background: #ff6600;
+}
+
+#header p {
+	padding-top: 51px;
+	font: black;
+	font-size: 1.4em;
+	text-align: center;
+}
+
 .container {
+	padding-top: 51px;
 	padding-top: 50px;
 }
 

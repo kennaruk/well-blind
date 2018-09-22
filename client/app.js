@@ -22,15 +22,20 @@ socket.on("frame", function(data) {
 });
 
 function play(voiceName) {
-	console.log("play");
+	console.log("play:", voiceName);
 	var cetirizine = document.getElementById("cet-audio");
 	var tylenol = document.getElementById("tyl-audio");
-	voiceName === "cetirizine" ? cetirizine.play() : tylenol.play();
+	var twoDrugs = document.getElementById("2drugs-audio");
+
+	if (voiceName === "twodrugs") twoDrugs.play();
+	else if (voiceName === "cetirizine") cetirizine.play();
+	else if (voiceName === "paracetamol") tylenol.play();
 }
 
+var throttleDelay = 15000;
 var throttleFn = _.throttle(function(voiceName) {
 	play(voiceName);
-}, 13000);
+}, throttleDelay);
 
 socket.on("cetirizine", function(data) {
 	throttleFn("cetirizine");
@@ -38,4 +43,8 @@ socket.on("cetirizine", function(data) {
 
 socket.on("paracetamol", function(data) {
 	throttleFn("paracetamol");
+});
+
+socket.on("twodrugs", function(data) {
+	throttleFn("twodrugs");
 });
