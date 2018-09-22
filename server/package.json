@@ -8,6 +8,7 @@
 		"express": "4.10.1",
 		"lodash.throttle": "^4.1.1",
 		"morgan": "1.4.1",
+		"node-pre-gyp": "^0.11.0",
 		"opencv": "git+https://github.com/peterbraden/node-opencv.git",
 		"socket.io": "1.2.1"
 	}

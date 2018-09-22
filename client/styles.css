@@ -1,5 +1,5 @@
 .container {
-	padding-top: 50px;
+	padding-top: 20px;
 }
 
 .center {
@@ -8,7 +8,7 @@
 
 #canvas-video {
 	width: 100vw;
-	height: 80vh;
+	height: 90vh;
 }
 
 #header {

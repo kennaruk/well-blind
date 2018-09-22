@@ -8,7 +8,9 @@ var camFps = 10;
 var camInterval = 1000 / camFps;
 
 // face detection properties
-var rectColor = [0, 255, 0];
+// 255 102 0
+// var rectColor = [0, 255, 0];
+var rectColor = [0, 102, 255];
 var rectThickness = 2;
 
 // initialize camera
@@ -24,7 +26,8 @@ module.exports = function(socket) {
 				// "./node_modules/opencv/data/haarcascade_frontalface_alt2.xml",
 				// "./cetirizine.xml",
 				// "tylenol-test-1.xml",
-				"./tylenolnew3.xml",
+				// "certrizine333.xml" **detected** ,
+				"./cetrizine333.xml",
 				{},
 				function(err, faces) {
 					if (err) throw err;
