@@ -2,7 +2,7 @@
 	"name": "edi-cam",
 	"private": true,
 	"scripts": {
-		"start": "node server.js --exec nodemon"
+		"start": "nodemon server.js"
 	},
 	"dependencies": {
 		"express": "4.10.1",

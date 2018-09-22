@@ -20,11 +20,11 @@ module.exports = function(socket) {
 	setInterval(function() {
 		camera.read(function(err, im) {
 			if (err) throw err;
-
 			im.detectObject(
-				"./node_modules/opencv/data/haarcascade_frontalface_alt2.xml",
+				// "./node_modules/opencv/data/haarcascade_frontalface_alt2.xml",
 				// "./cetirizine.xml",
 				// "tylenol-test-1.xml",
+				"./tylenolnew3.xml",
 				{},
 				function(err, faces) {
 					if (err) throw err;
@@ -37,10 +37,10 @@ module.exports = function(socket) {
 							rectThickness
 						);
 					}
-
 					socket.emit("frame", { buffer: im.toBuffer() });
 					socket.emit("cetirizine", {});
 					socket.emit("paracetamol", {});
+					console.log("length ", faces.length);
 				}
 			);
 		});
