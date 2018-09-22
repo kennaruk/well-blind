@@ -8,7 +8,9 @@ var camFps = 10;
 var camInterval = 1000 / camFps;
 
 // face detection properties
-var rectColor = [0, 255, 0];
+// 255 102 0
+// var rectColor = [0, 255, 0];
+var rectColor = [0, 102, 255];
 var rectThickness = 2;
 
 // initialize camera

@@ -16,7 +16,6 @@ body {
 
 .container {
 	padding-top: 51px;
-	padding-top: 50px;
 }
 
 .center {
@@ -25,7 +24,7 @@ body {
 
 #canvas-video {
 	width: 100vw;
-	height: 80vh;
+	height: 90vh;
 }
 
 #header {
